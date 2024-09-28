@@ -18,3 +18,5 @@ Sample `database.txt` provided
 * Viewing cart
 * Buying cart
 * Output updated database
+
+<img width="381" alt="image" src="https://github.com/user-attachments/assets/b9e549ef-9301-4fc2-a9d2-4feefd2ca875">
