@@ -1,0 +1,6 @@
+amazon
+*.o
+hw2_tests
+test.dSYM
+*.new
+hw2_tests.tar.gz

@@ -1,0 +1,24 @@
+name: build
+on: [push]
+permissions:
+  checks: write
+  contents: read
+  packages: read
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - run: sudo apt-get update && sudo apt-get install clang clang-tidy clang-format g++ make valgrind gdb llvm libgtest-dev software-properties-common cmake curl pkg-config wget dos2unix python3-pip
+      - name: Install Python dependencies
+        run: pip3 install xmltodict
+      - uses: actions/checkout@v4.1.6
+      - name: Build and run tests
+        run: bash ./.github/helpers/nick.sh -xe
+      - name: Build annotations
+        if: always() # Ensures the step always run, regardless if a previous step fails
+        uses: yuzutech/annotations-action@v0.5.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          title: annotations (build)
+          input: ./diagnostics.json
